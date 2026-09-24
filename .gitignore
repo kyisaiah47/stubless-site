@@ -17,6 +17,8 @@
 /.next/
 /out/
 /review/
+/.open-next/
+/.wrangler/
 
 # production
 /build

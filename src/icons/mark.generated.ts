@@ -20,13 +20,13 @@ export const MARK_ROOT_FILL: string | null = null;
 /** The ink the glyph is painted in, this product's accent. null when it draws in currentColor. */
 export const MARK_INK: string | null = "#6FB8F9";
 /** Everything inside the registry file's own <svg>. */
-export const MARK_INNER = "<rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#090a0b\"/><rect x=\"10\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"none\" stroke=\"#6FB8F9\" stroke-width=\"6\"/><rect x=\"30\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"#6FB8F9\"/>";
+export const MARK_INNER = "<rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#090a0b\"/><path d=\"M17 10h22l9 9v35H17z\" fill=\"#6FB8F9\"/><path d=\"M39 10v10h9\" fill=\"#82CBFF\"/><path d=\"M23 25h17M23 32h17M23 39h10\" stroke=\"#090a0b\" stroke-width=\"3\" stroke-linecap=\"square\"/><path d=\"M11 45h42\" stroke=\"#E6F4FF\" stroke-width=\"4\" stroke-linecap=\"square\"/>";
 /** The plate the family paints behind the glyph, where this mark has one. */
 export const MARK_PLATE: string | null = "<rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#090a0b\"/>";
 /** The glyph without that plate, for a header that paints its own ground. */
-export const MARK_GLYPH = "<rect x=\"10\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"none\" stroke=\"#6FB8F9\" stroke-width=\"6\"/><rect x=\"30\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"#6FB8F9\"/>";
+export const MARK_GLYPH = "<path d=\"M17 10h22l9 9v35H17z\" fill=\"#6FB8F9\"/><path d=\"M39 10v10h9\" fill=\"#82CBFF\"/><path d=\"M23 25h17M23 32h17M23 39h10\" stroke=\"#090a0b\" stroke-width=\"3\" stroke-linecap=\"square\"/><path d=\"M11 45h42\" stroke=\"#E6F4FF\" stroke-width=\"4\" stroke-linecap=\"square\"/>";
 /** The registry file entire, for a header that injects the whole mark. */
-export const MARK_SVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#090a0b\"/><rect x=\"10\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"none\" stroke=\"#6FB8F9\" stroke-width=\"6\"/><rect x=\"30\" y=\"12\" width=\"24\" height=\"40\" rx=\"7\" fill=\"#6FB8F9\"/></svg>";
+export const MARK_SVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><rect width=\"64\" height=\"64\" rx=\"10\" fill=\"#090a0b\"/><path d=\"M17 10h22l9 9v35H17z\" fill=\"#6FB8F9\"/><path d=\"M39 10v10h9\" fill=\"#82CBFF\"/><path d=\"M23 25h17M23 32h17M23 39h10\" stroke=\"#090a0b\" stroke-width=\"3\" stroke-linecap=\"square\"/><path d=\"M11 45h42\" stroke=\"#E6F4FF\" stroke-width=\"4\" stroke-linecap=\"square\"/></svg>";
 
 /** The same markup with the ink swapped, for a header that recolours the mark. */
 export function markInner(color?: string): string {

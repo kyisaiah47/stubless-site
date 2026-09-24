@@ -8,6 +8,8 @@
     "start": "next start -p 3307",
     "lint": "eslint",
     "check": "node scripts/check-register.mjs",
+    "capture": "node scripts/capture.mjs",
+    "icons": "node scripts/icons.mjs",
     "shoot": "node scripts/shoot.mjs http://localhost:3307",
     "build:cf": "opennextjs-cloudflare build",
     "deploy:cf": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && opennextjs-cloudflare populateCache remote && node scripts/verify-cf.mjs https://stubless-site.kyisaiah47.workers.dev"
