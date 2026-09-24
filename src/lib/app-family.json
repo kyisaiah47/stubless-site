@@ -17,7 +17,7 @@
     {
       "slug": "stubless-site",
       "name": "stubless",
-      "url": "https://stubless.thecompound.tech",
+      "url": "/",
       "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%23090a0b%22%2F%3E%3Cpath%20d%3D%22M32%2012%2047%2021v18L32%2048%2017%2039V21z%22%20fill%3D%22%236FB8F9%22%2F%3E%3Cpath%20d%3D%22m32%2023%209%205v8l-9%205-9-5v-8z%22%20fill%3D%22%23090a0b%22%2F%3E%3C%2Fsvg%3E"
     },
     {
