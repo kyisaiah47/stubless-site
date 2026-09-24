@@ -26,6 +26,9 @@ npx opennextjs-cloudflare build
 echo "==> deploy"
 npx opennextjs-cloudflare deploy
 
+echo "==> make sure this custom domain has its own exact zone route, or the *.thecompound.tech wildcard will 307 it forever"
+node "$HOME/CompoundLabs/compound-ops/tools/cloudflare/sync-worker-routes.mjs" --apply --only "$HOST"
+
 echo "==> populate the incremental cache the deployed build reads"
 npx opennextjs-cloudflare populateCache remote
 
