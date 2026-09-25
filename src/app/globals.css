@@ -11,3 +11,4 @@
 .scroll-note{position:absolute;right:8px;bottom:6px;color:var(--dim);font-family:var(--font-mono),monospace;font-size:9px;letter-spacing:.08em;z-index:2}
 .folio{background-image:linear-gradient(90deg,var(--bg) calc(100% - 28px),transparent)}
 .table-wrap{background-image:linear-gradient(90deg,var(--panel) calc(100% - 22px),transparent)}
+.band-copy{max-width:none}
