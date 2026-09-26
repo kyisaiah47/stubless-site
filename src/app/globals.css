@@ -12,3 +12,4 @@
 .folio{background-image:linear-gradient(90deg,var(--bg) calc(100% - 28px),transparent)}
 .table-wrap{background-image:linear-gradient(90deg,var(--panel) calc(100% - 22px),transparent)}
 .band-copy{max-width:none}
+.lede{max-width:none}
