@@ -6,6 +6,8 @@ import { Icon } from './Icon';
 import { EXITS, PRODUCT, SOURCES } from '@/lib/product';
 import { RUN } from '@/lib/run';
 import FAMILY from '@/lib/app-family.json';
+import ViewControls from './site-view/ViewControls';
+import { useDraft } from './site-view/SiteViewProvider';
 
 const thresholds = [60, 70, 80, 90] as const;
 const stubless = RUN.repos.find((row) => row.repo === 'kyisaiah47/stubless');
@@ -13,7 +15,7 @@ const scoredFile = stubless?.files[0];
 const formats = RUN.formats;
 
 export default function Console() {
-  const [threshold, setThreshold] = useState(60);
+  const [threshold, setThreshold] = useDraft<number>('threshold', 60);
   const [strip, setStrip] = useState(false);
   const [openSource, setOpenSource] = useState<string | null>(null);
   const score = scoredFile?.quality ?? 0;
@@ -43,7 +45,7 @@ export default function Console() {
       </main>
       <aside className="rail rail-right"><RailHeading icon="clock" text="THE RUN" /><RunRow label="PACKAGE" value={PRODUCT.version} /><RunRow label="API" value="RuleStack" /><RunRow label="FORMATS" value={formats.length} /><RunRow label="DEPENDENCIES" value="0" /><RailHeading icon="warning-circle" text="THREE STATES" />{EXITS.map((item) => <div className="state-row" key={item.code}><span className={`state-mark ${item.ink}`}>{item.code}</span><p><b>{item.label}</b>{item.text}</p></div>)}<RailHeading icon="arrow-square-out" text="WHERE THIS WAS READ" /><a className="rail-link" href={PRODUCT.repo}>github.com/kyisaiah47/stubless</a><a className="rail-link" href="https://rulestack.thecompound.tech">rulestack.thecompound.tech</a></aside>
     </div>
-    <footer><div><span>Built by</span><img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={20} height={20} /></div><span>© 2026 stubless. A Compound Labs product.</span><a href="mailto:hello@thecompound.tech">hello@thecompound.tech</a></footer>
+    <footer><div><span>Built by</span><img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={20} height={20} /></div><span>© 2026 stubless. A Compound Labs product.</span><a href="mailto:hello@thecompound.tech">hello@thecompound.tech</a><ViewControls /></footer>
   </>;
 }
 
