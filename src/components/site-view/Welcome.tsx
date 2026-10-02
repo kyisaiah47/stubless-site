@@ -98,11 +98,9 @@ export default function Welcome() {
       </header>
       <div className="sv-welcome-intro">
         <span className="sv-label">GITHUB ACTION, RULESTACK SCORE GATE</span>
-        <h2 id="sv-welcome-title">Does your AGENTS.md teach an agent anything?</h2>
+        <h2 id="sv-welcome-title">Check whether your AGENTS.md teaches an agent anything.</h2>
         <p>
-          stubless is a GitHub Action. It asks RuleStack to score the agent instruction files in your
-          repository, prints where each file earned its points, and fails the job below a threshold
-          you set.
+          stubless is a GitHub Action. It asks RuleStack to score the agent instruction files in your repository, prints where each file earned its points and fails the job below a threshold you set.
         </p>
       </div>
       <section className="sv-illustration" aria-label="Illustrative job summary">
@@ -120,7 +118,7 @@ export default function Welcome() {
       </section>
       <section className="sv-welcome-choose">
         <div>
-          <h3>How would you like to explore?</h3>
+          <h3>Choose how to explore.</h3>
           <p>You can switch anytime.</p>
         </div>
         <div className="sv-choices">
@@ -156,7 +154,7 @@ export default function Welcome() {
               } catch {}
             }}
           />
-          Don&rsquo;t open this when I come back
+          Do not open this when I come back
         </label>
       </footer>
     </dialog>

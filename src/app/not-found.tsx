@@ -12,7 +12,7 @@ export default function NotFound() {
         <header className="sv-page-heading">
           <span className="sv-label">NOT FOUND</span>
           <h1>There is no page at that address.</h1>
-          <p>This site has one page. The Action&rsquo;s usage, inputs and exit codes are in its repository.</p>
+          <p>This site has one page. The repository contains the Action’s usage, inputs and exit codes.</p>
         </header>
         <nav className="sv-links sv-links-top" aria-label="Ways back">
           <Link href="/">The stubless page ↗</Link>

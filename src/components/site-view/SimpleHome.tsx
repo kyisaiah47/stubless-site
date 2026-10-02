@@ -104,11 +104,11 @@ function CopyWorkflow() {
         <code>{text}</code>
       </pre>
       <button type="button" className="sv-primary" onClick={copy}>
-        {state === 'copied' ? 'Copied. Save it as .github/workflows/rulestack.yml' : 'Copy the workflow'}
+        {state === 'copied' ? 'Copied. Save the workflow as .github/workflows/rulestack.yml' : 'Copy the workflow'}
       </button>
       <p className="sv-terms" role="status" aria-live="polite">
         {state === 'refused'
-          ? 'This browser blocked the clipboard. Select the workflow above and copy it by hand.'
+          ? 'This browser blocked the clipboard. Select the workflow above and copy it manually.'
           : `MIT licence. No runtime dependencies. Node 18 or later.`}
       </p>
     </>
@@ -130,8 +130,7 @@ function ExampleRun() {
         of {threshold}.
       </h3>
       <p>
-        The repository score is the strongest recognised file, the same number RuleStack&rsquo;s own badge reports.
-        This run found {OWN?.files.length} file and exited {OWN?.exit}.
+        The repository score is the strongest recognised file, and RuleStack’s own badge reports the same number. This run found {OWN?.files.length} file and exited {OWN?.exit}.
       </p>
       <Disclosure title={`See where ${OWN_FILE.path} earned its points`}>
         <dl className="sv-record">
@@ -147,8 +146,7 @@ function ExampleRun() {
         </dl>
       </Disclosure>
       <p className="sv-note">
-        This is stubless&rsquo;s own repository, scored by RuleStack and shown as an example. It is not a score of your
-        repository.
+        This is stubless’s own repository, scored by RuleStack and shown as an example. It is not a score for your repository.
       </p>
     </div>
   );
@@ -164,12 +162,10 @@ export default function SimpleHome() {
             <span className="sv-label">{PRODUCT.standing}</span>
             <h1>Fail the job when your agent instructions teach nothing.</h1>
             <p>
-              A stub agent config is a file that always parses and teaches nothing: no build command, no test
-              command, no stated boundary. stubless scores AGENTS.md, CLAUDE.md and the rest with RuleStack and fails
-              the job below a threshold.
+              A stub agent config is a file that always parses and teaches nothing. It has no build command, no test command and no stated boundary. stubless scores AGENTS.md, CLAUDE.md and the rest with RuleStack, then fails the job below a threshold.
             </p>
             <div className="sv-qualifier">
-              The recogniser lives in RuleStack, not here. If RuleStack cannot be reached, the job exits 2, never 0.
+              The recogniser lives in RuleStack, not here. If RuleStack cannot be reached, the job exits 2 and never exits 0.
             </div>
           </div>
           <div className="sv-card sv-action">
@@ -178,7 +174,7 @@ export default function SimpleHome() {
               <span>FREE</span>
             </div>
             <h2>Add one workflow file.</h2>
-            <p>The job runs on every push and pull request and prints the breakdown as a job summary.</p>
+            <p>The job runs on every push and pull request. It prints the breakdown as a job summary.</p>
             <CopyWorkflow />
           </div>
         </section>
@@ -198,9 +194,9 @@ export default function SimpleHome() {
           <div className="sv-section-intro">
             <div>
               <span className="sv-label">03 / WHAT IT COSTS</span>
-              <h2>Nothing. stubless is free and MIT licensed.</h2>
+              <h2>You pay nothing. stubless is free and MIT licensed.</h2>
             </div>
-            <p>There is no account and no key. The job calls RuleStack&rsquo;s public score endpoint.</p>
+            <p>You need no account and no key. The job calls RuleStack’s public score endpoint.</p>
           </div>
           <div className="sv-plans">
             <div className="sv-card sv-plan">
@@ -220,12 +216,12 @@ export default function SimpleHome() {
             <div className="sv-card sv-plan">
               <h3>The inputs</h3>
               <p>
-                Set them under <code>with:</code> in the workflow.
+                You set them under <code>with:</code> in the workflow.
               </p>
               <ul>
                 <li>threshold, default 60: fail below this</li>
-                <li>per-file-threshold, unset: every recognised file must clear this too</li>
-                <li>timeout, default 60 seconds: the request deadline before exit 2</li>
+                <li>per-file-threshold is unset by default. Every recognised file must clear this too.</li>
+                <li>timeout defaults to 60 seconds. The request deadline causes exit 2.</li>
               </ul>
               <a className="sv-primary" href={`${PRODUCT.repo}#inputs`}>
                 Read every input on GitHub
