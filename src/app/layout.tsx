@@ -4,6 +4,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 import { PRODUCT } from '@/lib/product';
 import './globals.css';
 import SiteViewProvider from '@/components/site-view/SiteViewProvider';
+import Analytics from '@/components/Analytics';
 
 const mono = IBM_Plex_Mono({ variable: '--font-mono', subsets: ['latin'], weight: ['400', '500'] });
 export const metadata: Metadata = {
@@ -25,4 +26,4 @@ export const metadata: Metadata = {
     images: ['/icon.svg'],
   },
 };
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: PRODUCT.name, url: PRODUCT.host, publisher: { '@type': 'Organization', '@id': 'https://thecompound.tech/#organization', name: 'Compound Labs', url: 'https://thecompound.tech' } }; return <html lang="en" className={mono.variable}><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><SmoothScroll /><SiteViewProvider>{children}</SiteViewProvider></body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: PRODUCT.name, url: PRODUCT.host, publisher: { '@type': 'Organization', '@id': 'https://thecompound.tech/#organization', name: 'Compound Labs', url: 'https://thecompound.tech' } }; return <html lang="en" className={mono.variable}><body><Analytics /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><SmoothScroll /><SiteViewProvider>{children}</SiteViewProvider></body></html>; }
