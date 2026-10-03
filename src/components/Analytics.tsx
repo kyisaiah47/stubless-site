@@ -195,11 +195,13 @@ function Tracker() {
   useEffect(() => {
     if (!pathname) return;
     let cancelled = false;
-    /* The pageview AWAITS the SDK rather than testing a flag. With a static import
-     * `initialized` was already true by the time this ran. With a fetch it is not, and an
-     * early return here would silently drop the first pageview of every visit. */
-    void init().then((ok) => {
-      if (!ok || cancelled || !posthog) return;
+    const start = () => {
+      if (cancelled) return;
+      /* The pageview AWAITS the SDK rather than testing a flag. With a static import
+       * `initialized` was already true by the time this ran. With a fetch it is not, and an
+       * early return here would silently drop the first pageview of every visit. */
+      void init().then((ok) => {
+        if (!ok || cancelled || !posthog) return;
 
         // First-touch UTM attribution. It rides on every later event (incl. checkout/purchase).
         const utm: Record<string, string> = {};
@@ -250,8 +252,15 @@ function Tracker() {
             verified: /^cs_[A-Za-z0-9_]+$/.test(sessionId) ? 'session' : 'flag',
           });
         }
-    });
-    return () => { cancelled = true; };
+      });
+    };
+    const canIdle = 'requestIdleCallback' in window;
+    const idle = canIdle ? window.requestIdleCallback(start, { timeout: 5000 }) : window.setTimeout(start, 1000);
+    return () => {
+      cancelled = true;
+      if (canIdle) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
+    };
   }, [pathname, searchParams]);
 
   return null;
