@@ -165,12 +165,6 @@ export const RUN = {
    "files": []
   },
   {
-   "repo": "kyisaiah47/wirecall",
-   "set": "dev",
-   "exit": 1,
-   "files": []
-  },
-  {
    "repo": "kyisaiah47/glanceless",
    "set": "package",
    "exit": 1,
