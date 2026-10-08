@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { PRODUCT } from '@/lib/product';
 import { SimpleFooter, SimpleHeader } from '@/components/site-view/SimpleHome';
+import PageViews from '@/components/site-view/PageViews';
 
 /* The site publishes one page. A wrong address gets the product's own header and footer, with
- * the view controls, and the ways back, in either view. */
+ * the view controls, and the ways back, in either view. The page is a Simple page, so it registers
+ * as one: the toggle and `data-view` then match what is drawn. */
 export default function NotFound() {
-  return (
+  const page = (
     <>
       <SimpleHeader />
       <main className="sv-shell sv-page">
@@ -23,4 +25,5 @@ export default function NotFound() {
       <SimpleFooter />
     </>
   );
+  return <PageViews consoleView={page} simpleView={page} />;
 }

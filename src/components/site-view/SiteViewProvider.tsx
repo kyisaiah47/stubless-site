@@ -3,7 +3,12 @@
 /* THE VIEW AUTHORITY. Console is the default for a clean visitor. A valid `?view=` beats the
  * saved choice, and an explicit choice is saved. Drafts (the search query) live in memory here,
  * above both views, so a typed query survives a switch and a route change. Only the two
- * preferences are written to storage. */
+ * preferences are written to storage.
+ *
+ * ⛔ THE VIEW FOLLOWS THE BODY. PageViews registers a route's Simple body here while it is
+ * mounted. `view`, which FooterViews and `data-view` read, is Simple only when the visitor chose
+ * Simple AND the mounted route has a Simple body. The saved choice (`chosen`) is kept, so the next
+ * route with a Simple body opens in Simple. */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Welcome from './Welcome';
@@ -14,7 +19,18 @@ export const VIEW_KEY = 'stubless:view';
 export const WELCOME_OFF_KEY = 'stubless:welcome-off';
 export const WELCOME_EVENT = 'stubless:welcome';
 
-type ViewCtx = { view: SiteView; choose: (view: SiteView) => void; welcome: () => void };
+type ViewCtx = {
+  /** The view this route renders: Simple only when it was chosen and the route has a Simple body. */
+  view: SiteView;
+  /** The visitor's saved choice, which can be Simple on a Console-only route. */
+  chosen: SiteView;
+  /** Whether the mounted route has a Simple body. */
+  hasSimple: boolean;
+  /** Called by PageViews while it holds a Simple body. Returns the unregister. */
+  registerSimple: () => () => void;
+  choose: (view: SiteView) => void;
+  welcome: () => void;
+};
 const ViewContext = createContext<ViewCtx | null>(null);
 export function useSiteView() {
   return useContext(ViewContext);
@@ -35,7 +51,16 @@ export function useDraft<T>(key: string, initial: T): [T, (value: T) => void] {
 }
 
 export default function SiteViewProvider({ children }: { children: ReactNode }) {
-  const [view, setView] = useState<SiteView>('console');
+  const [chosen, setView] = useState<SiteView>('console');
+  /* A count, not a flag: an old page's unregister and a new page's register can land in either
+   * order on a route change. */
+  const [simpleBodies, setSimpleBodies] = useState(0);
+  const registerSimple = useCallback(() => {
+    setSimpleBodies((n) => n + 1);
+    return () => setSimpleBodies((n) => Math.max(0, n - 1));
+  }, []);
+  const hasSimple = simpleBodies > 0;
+  const view: SiteView = chosen === 'simple' && hasSimple ? 'simple' : 'console';
   const [drafts, setDrafts] = useState<Record<string, unknown>>({});
   const path = usePathname();
 
@@ -66,8 +91,8 @@ export default function SiteViewProvider({ children }: { children: ReactNode }) 
 
   const set = useCallback((key: string, value: unknown) => setDrafts((d) => ({ ...d, [key]: value })), []);
   const viewValue = useMemo(
-    () => ({ view, choose, welcome: () => window.dispatchEvent(new Event(WELCOME_EVENT)) }),
-    [view, choose],
+    () => ({ view, chosen, hasSimple, registerSimple, choose, welcome: () => window.dispatchEvent(new Event(WELCOME_EVENT)) }),
+    [view, chosen, hasSimple, registerSimple, choose],
   );
   const draftValue = useMemo(() => ({ drafts, set }), [drafts, set]);
 

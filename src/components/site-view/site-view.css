@@ -33,6 +33,8 @@
 .sv-view-tools button { min-height: 44px; background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; }
 .sv-view-tools button:hover { color: var(--sv-ink); }
 .sv-view-tools button[aria-pressed='true'] { color: var(--sv-ink); text-decoration: underline; text-decoration-color: var(--sv-acc); text-underline-offset: 6px; }
+.sv-view-tools button:disabled { opacity: 0.45; cursor: not-allowed; }
+.sv-view-tools > div > button:disabled:hover { color: inherit; }
 .foot-view { padding-bottom: 22px; }
 
 /* Anything a Console observer would have revealed is visible in Simple without it. */
